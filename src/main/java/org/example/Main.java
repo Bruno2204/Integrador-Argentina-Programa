@@ -10,8 +10,8 @@ public class Main {
 
         List<Partido> resultados = new ArrayList<Partido>();
 
-        try (BufferedReader brResultados = new BufferedReader(new FileReader("TrabajoIntegrador/src/main/resources/resultados.csv")) ;
-             BufferedReader brPronosticos = new BufferedReader(new FileReader("TrabajoIntegrador/src/main/resources/pronosticos.csv"))) {
+        try (BufferedReader brResultados = new BufferedReader(new FileReader("src/main/resources/resultados.csv")) ;
+             BufferedReader brPronosticos = new BufferedReader(new FileReader("src/main/resources/pronosticos.csv"))) {
 
             List<String> fileResultados = brResultados.lines().toList();
             AddPartidos(resultados,fileResultados);
