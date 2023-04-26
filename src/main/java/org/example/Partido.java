@@ -1,6 +1,7 @@
 package org.example;
 
 public class Partido {
+    public int ronda;
     private Equipo equipo1;
     private int goles1;
     private int goles2;
@@ -16,7 +17,8 @@ public class Partido {
         return this.ganador;
     }
 
-    public Partido(Equipo equipo1,int goles1,int goles2,Equipo equipo2) {
+    public Partido(int ronda,Equipo equipo1,int goles1,int goles2,Equipo equipo2) {
+        this.ronda = ronda;
         this.setEquipo1(equipo1);
         this.setGoles1(goles1);
         this.setGoles2(goles2);
