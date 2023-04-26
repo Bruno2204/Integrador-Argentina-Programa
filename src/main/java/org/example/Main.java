@@ -7,8 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Main {
-//    public static List<Partido> resultados = new ArrayList<Partido>();
     public static HashMap<String,Partido> resultados = new HashMap<String,Partido>();
+    public static HashMap<String,Integer> fases = new HashMap<String,Integer>();
     public static HashMap<String,Integer> rondas = new HashMap<String,Integer>();
 
     public static void main(String[] args) {
@@ -32,15 +32,21 @@ public class Main {
     public static void AddPartidos(HashMap<String,Partido> lista,List<String> file) {
         for (int i = 1 ; i < file.size() ; i++) {
             String[] datos = file.get(i).split(",");
+            int fase = Integer.parseInt(datos[0]);
             int ronda = Integer.parseInt(datos[1]);
             Equipo equipo1 = Equipo.GetEquipo(datos[2]);
             int goles1 = Integer.parseInt(datos[3]);
             int goles2 = Integer.parseInt(datos[4]);
             Equipo equipo2 = Equipo.GetEquipo(datos[5]);
-            Partido partido = new Partido(ronda,equipo1,goles1,goles2,equipo2);
+            Partido partido = new Partido(fase,ronda,equipo1,goles1,goles2,equipo2);
             lista.put(datos[2]+datos[5],partido);
             if (!rondas.containsKey(datos[1])){
                 rondas.put(datos[1],1);
+                if (!fases.containsKey(datos[0])){
+                    fases.put(datos[0],1);
+                }else {
+                    fases.put(datos[0],fases.get(datos[0])+1);
+                }
             }else {
                 rondas.put(datos[1],rondas.get(datos[1])+1);
             }

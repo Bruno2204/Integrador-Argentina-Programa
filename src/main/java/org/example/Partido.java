@@ -18,7 +18,8 @@ public class Partido {
         return this.ganador;
     }
 
-    public Partido(int ronda,Equipo equipo1,int goles1,int goles2,Equipo equipo2) {
+    public Partido(int fase,int ronda,Equipo equipo1,int goles1,int goles2,Equipo equipo2) {
+        this.fase = fase;
         this.ronda = ronda;
         this.setEquipo1(equipo1);
         this.setGoles1(goles1);
