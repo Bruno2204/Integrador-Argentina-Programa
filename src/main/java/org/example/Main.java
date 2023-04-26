@@ -25,26 +25,24 @@ public class Main {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-//                MostrarPuntajes();
-            rondas.forEach((k,v)->{
-                System.out.println("Ronda "+k+": "+v);
-            });
+            MostrarPuntajes();
         }
     }
 
     public static void AddPartidos(HashMap<String,Partido> lista,List<String> file) {
         for (int i = 1 ; i < file.size() ; i++) {
             String[] datos = file.get(i).split(",");
-            Equipo equipo1 = Equipo.GetEquipo(datos[0]);
-            int goles1 = Integer.parseInt(datos[1]);
-            int goles2 = Integer.parseInt(datos[2]);
-            Equipo equipo2 = Equipo.GetEquipo(datos[3]);
-            Partido partido = new Partido(1,equipo1,goles1,goles2,equipo2);
-            lista.put(datos[0]+datos[3],partido);
-            if (!rondas.containsKey("1")){
-                rondas.put("1",1);
+            int ronda = Integer.parseInt(datos[1]);
+            Equipo equipo1 = Equipo.GetEquipo(datos[2]);
+            int goles1 = Integer.parseInt(datos[3]);
+            int goles2 = Integer.parseInt(datos[4]);
+            Equipo equipo2 = Equipo.GetEquipo(datos[5]);
+            Partido partido = new Partido(ronda,equipo1,goles1,goles2,equipo2);
+            lista.put(datos[2]+datos[5],partido);
+            if (!rondas.containsKey(datos[1])){
+                rondas.put(datos[1],1);
             }else {
-                rondas.put("1",rondas.get("1")+1);
+                rondas.put(datos[1],rondas.get(datos[1])+1);
             }
         }
     }
@@ -65,8 +63,9 @@ public class Main {
     }
     public static void MostrarPuntajes() {
         Participante.participantes.forEach((key,participante)->{
-            //participante.ObtenerPuntaje();
-            System.out.println(participante.getNombre() +": " + participante.puntaje);
+            participante.ObtenerPuntaje();
+            System.out.println(participante.getNombre() +" Puntaje: " + participante.puntaje);
+            System.out.println(participante.getNombre() +" Aciertos: " + participante.aciertos);
         });
     }
 }

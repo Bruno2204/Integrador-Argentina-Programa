@@ -9,7 +9,8 @@ public class Participante {
     public static HashMap<String, Participante> participantes = new HashMap<String, Participante>();
     private String nombre;
     public int puntaje;
-    private int aciertos;
+    public int aciertos;
+    public int rondaEntera = 0;
 
     public Participante(String nombre) {
         this.nombre = nombre;
@@ -35,21 +36,25 @@ public class Participante {
     public void ObtenerPuntaje() {
         puntaje = 0;
         aciertos = 0;
-        for (int i = 0 ; i < this.pronosticos.size() ; i++) {
-            int rondaActual = this.pronosticos.get(i).partido.ronda;
-            int rondaLength = 0;
-            int rondaAciertos = 0;
-            for (int j = 0 ; j < 0 ; j++) {
-                
+        int rondaActual = 1;
+        int aciertosRonda = 0;
+        int rondaLen;
+        for (int i = 0; i < this.pronosticos.size(); i++) {
+            Pronostico pronostico = pronosticos.get(i);
+            rondaLen = Main.rondas.get(Integer.toString(pronostico.partido.ronda));
+            if (pronostico.acierto) {
+                aciertosRonda++;
+                aciertos++;
+                if (aciertosRonda == rondaLen && rondaActual == pronostico.partido.ronda){
+                    rondaEntera++;
+                } else if (!(rondaActual == pronostico.partido.ronda)){
+                    aciertosRonda = 1;
+                    rondaActual = pronostico.partido.ronda;
+                    rondaLen = Main.rondas.get(Integer.toString(pronostico.partido.ronda));
+                }
             }
-            
-            
-            if (rondaAciertos == rondaLength){
-                puntaje+=2;
-            }
-            aciertos+=rondaAciertos;
         }
-
-        puntaje+=aciertos;
+        puntaje = aciertos + rondaEntera*10;
     }
 }
+

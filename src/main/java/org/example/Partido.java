@@ -1,6 +1,7 @@
 package org.example;
 
 public class Partido {
+    public int fase;
     public int ronda;
     private Equipo equipo1;
     private int goles1;
