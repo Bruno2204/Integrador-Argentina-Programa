@@ -1,30 +1,34 @@
 package org.example;
 
 public class Partido {
-    public int fase;
-    public int ronda;
+    private int fase;
+    private int ronda;
     private Equipo equipo1;
     private int goles1;
     private int goles2;
     private Equipo equipo2;
-    private int ganador = 0;
-
-    public int getGanador() {
-        return this.ganador;
-    }
+    private int ganador;
 
     public Partido(int fase,int ronda,Equipo equipo1,int goles1,int goles2,Equipo equipo2) {
-        this.fase = fase;
-        this.ronda = ronda;
+        this.setFase(fase);
+        this.setRonda(ronda);
         this.setEquipo1(equipo1);
         this.setGoles1(goles1);
         this.setGoles2(goles2);
         this.setEquipo2(equipo2);
         if (getGoles1() > getGoles2()) {
-            this.ganador = 1;
+            this.setGanador(1);
         } else if (getGoles2() > getGoles1()) {
-            this.ganador = 2;
-        } else this.ganador = 0;
+            this.setGanador(2);
+        } else this.setGanador(0);
+    }
+
+    public int getGanador() {
+        return this.ganador;
+    }
+
+    public void setGanador(int ganador) {
+        this.ganador = ganador;
     }
 
     public Equipo getEquipo1() {
@@ -59,7 +63,19 @@ public class Partido {
         this.equipo2 = equipo2;
     }
 
-    public void setGanador(int ganador) {
-        this.ganador = ganador;
+    public int getFase() {
+        return fase;
+    }
+
+    public void setFase(int fase) {
+        this.fase = fase;
+    }
+
+    public int getRonda() {
+        return ronda;
+    }
+
+    public void setRonda(int ronda) {
+        this.ronda = ronda;
     }
 }

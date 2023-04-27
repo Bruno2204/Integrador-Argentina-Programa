@@ -6,22 +6,83 @@ import java.util.List;
 
 public class Participante {
 
-    public static HashMap<String, Participante> participantes = new HashMap<String, Participante>();
+    public static HashMap<String, Participante> participantes = new HashMap<>();
     private String nombre;
-    public int puntaje;
-    public int aciertos;
+    private int puntaje;
+
+    private int aciertos;
+
+    private List<Pronostico> pronosticos = new ArrayList<>();
 
     public Participante(String nombre) {
-        this.nombre = nombre;
+        this.setNombre(nombre);
     }
-
-    public List<Pronostico> pronosticos = new ArrayList<Pronostico>();
 
     public static Participante GetParticipante(String key) {
         if (!participantes.containsKey(key)) {
             participantes.put(key,new Participante(key));
         }
         return participantes.get(key);
+    }
+
+    public void ObtenerPuntaje() {
+        setPuntaje(0);
+        setAciertos(0);
+        int rondasAcertadas = 0;
+        int fasesAcertadas = 0;
+        int partidosPorRonda;
+        int rondasPorFase;
+        int partidosAcertadosRondaActual = 0;
+        int rondasAcertadasFaseActual = 0;
+        int rondaLoopeada = 1;
+        int faseLoopeada = 1;
+        for (int i = 0 ; i < this.getPronosticos().size() ; i++) {
+            Pronostico pronostico = getPronosticos().get(i);
+            int faseActual = pronostico.getPartido().getFase();
+            int rondaActual = pronostico.getPartido().getRonda();
+            partidosPorRonda = Main.rondas.get(Integer.toString(rondaActual));
+            rondasPorFase = Main.fases.get(Integer.toString(faseActual));
+            if (pronostico.isAcierto()) {
+                setAciertos(getAciertos() + 1);
+                partidosAcertadosRondaActual++;
+                if (rondaActual != rondaLoopeada) {
+                    rondaLoopeada = rondaActual;
+                    partidosAcertadosRondaActual = 1;
+                }
+                if (partidosAcertadosRondaActual == partidosPorRonda) {
+                    rondasAcertadasFaseActual++;
+                    rondasAcertadas++;
+                    if (faseActual != faseLoopeada) {
+                        faseLoopeada = faseActual;
+                        rondasAcertadasFaseActual = 1;
+                    }
+                    if (rondasAcertadasFaseActual == rondasPorFase) {
+                        fasesAcertadas++;
+                    }
+                }
+            }
+        }
+        setPuntaje(getAciertos() * Main.puntosPorAcierto + rondasAcertadas * 100 + fasesAcertadas * 1000);
+    }
+
+    public List<Pronostico> getPronosticos() {
+        return pronosticos;
+    }
+
+    public int getPuntaje() {
+        return puntaje;
+    }
+
+    public void setPuntaje(int puntaje) {
+        this.puntaje = puntaje;
+    }
+
+    public int getAciertos() {
+        return aciertos;
+    }
+
+    public void setAciertos(int aciertos) {
+        this.aciertos = aciertos;
     }
 
     public String getNombre() {
@@ -72,45 +133,5 @@ public class Participante {
         }
         puntaje = aciertos + rondaEntera*10 + faseEntera*100;
     }*/
-
-    public void ObtenerPuntaje() {
-        puntaje = 0;
-        aciertos = 0;
-        int rondasAcertadas = 0;
-        int fasesAcertadas = 0;
-        int partidosPorRonda;
-        int rondasPorFase;
-        int partidosAcertadosRondaActual = 0;
-        int rondasAcertadasFaseActual = 0;
-        int rondaLoopeada = 1;
-        int faseLoopeada = 1;
-        for (int i = 0; i < this.pronosticos.size(); i++) {
-            Pronostico pronostico = pronosticos.get(i);
-            int faseActual = pronostico.partido.fase;
-            int rondaActual = pronostico.partido.ronda;
-            partidosPorRonda = Main.rondas.get(Integer.toString(rondaActual));
-            rondasPorFase = Main.fases.get(Integer.toString(faseActual));
-            if (pronostico.acierto) {
-                aciertos++;
-                partidosAcertadosRondaActual++;
-                if (rondaActual != rondaLoopeada){
-                    rondaLoopeada = rondaActual;
-                    partidosAcertadosRondaActual=1;
-                }
-                if (partidosAcertadosRondaActual == partidosPorRonda){
-                    rondasAcertadasFaseActual++;
-                    rondasAcertadas++;
-                    if (faseActual != faseLoopeada){
-                        faseLoopeada = faseActual;
-                        rondasAcertadasFaseActual=1;
-                    }
-                    if (rondasAcertadasFaseActual == rondasPorFase){
-                        fasesAcertadas++;
-                    }
-                }
-            }
-        }
-        puntaje = aciertos * Main.puntosXAcierto + rondasAcertadas *100 + fasesAcertadas*1000;
-    }
 }
 
