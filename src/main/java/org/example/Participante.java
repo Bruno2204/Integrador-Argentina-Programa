@@ -10,7 +10,6 @@ public class Participante {
     private String nombre;
     public int puntaje;
     public int aciertos;
-    public int rondaEntera;
 
     public Participante(String nombre) {
         this.nombre = nombre;
@@ -32,8 +31,8 @@ public class Participante {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-/*
-    public void ObtenerPuntajee() {
+
+    /*public void ObtenerPuntajee() {
         puntaje = 0;
         aciertos = 0;
         int faseEntera = 0;
@@ -77,39 +76,41 @@ public class Participante {
     public void ObtenerPuntaje() {
         puntaje = 0;
         aciertos = 0;
-        int faseEntera = 0;
-        int rondaActual = 1;
-        int aciertosRonda = 0;
-        int rondaLen;
-        int faseLen;
-        int aciertosFase = 0;
-        int faseActual = 1;
+        int rondasAcertadas = 0;
+        int fasesAcertadas = 0;
+        int partidosPorRonda;
+        int rondasPorFase;
+        int partidosAcertadosRondaActual = 0;
+        int rondasAcertadasFaseActual = 0;
+        int rondaLoopeada = 1;
+        int faseLoopeada = 1;
         for (int i = 0; i < this.pronosticos.size(); i++) {
             Pronostico pronostico = pronosticos.get(i);
-            rondaLen = Main.rondas.get(Integer.toString(pronostico.partido.ronda));
-            faseLen = Main.fases.get(Integer.toString(pronostico.partido.fase));
+            int faseActual = pronostico.partido.fase;
+            int rondaActual = pronostico.partido.ronda;
+            partidosPorRonda = Main.rondas.get(Integer.toString(rondaActual));
+            rondasPorFase = Main.fases.get(Integer.toString(faseActual));
             if (pronostico.acierto) {
                 aciertos++;
-                aciertosRonda++;
-                if (!(pronostico.partido.ronda == rondaActual)){
-                    rondaActual = pronostico.partido.ronda;
-                    aciertosRonda=1;
+                partidosAcertadosRondaActual++;
+                if (rondaActual != rondaLoopeada){
+                    rondaLoopeada = rondaActual;
+                    partidosAcertadosRondaActual=1;
                 }
-                if (aciertosRonda == rondaLen){
-                    aciertosFase++;
-                    rondaEntera++;
-                    if (!(pronostico.partido.fase == faseActual)){
-                        faseActual = pronostico.partido.fase;
-                        aciertosFase=1;
+                if (partidosAcertadosRondaActual == partidosPorRonda){
+                    rondasAcertadasFaseActual++;
+                    rondasAcertadas++;
+                    if (faseActual != faseLoopeada){
+                        faseLoopeada = faseActual;
+                        rondasAcertadasFaseActual=1;
                     }
-                    //System.out.println("Aciertos fase:"+aciertosFase+" Fase len:"+ faseLen);
-                    if (aciertosFase == faseLen){
-                        faseEntera++;
+                    if (rondasAcertadasFaseActual == rondasPorFase){
+                        fasesAcertadas++;
                     }
                 }
             }
         }
-        puntaje = aciertos*Main.puntosXAcierto + rondaEntera*100 + faseEntera*1000;
+        puntaje = aciertos * Main.puntosXAcierto + rondasAcertadas *100 + fasesAcertadas*1000;
     }
 }
 

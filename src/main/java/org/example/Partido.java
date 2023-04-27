@@ -10,11 +10,6 @@ public class Partido {
     private int ganador = 0;
 
     public int getGanador() {
-        if (getGoles1() > getGoles2()) {
-            this.ganador = 1;
-        } else if (getGoles2() > getGoles1()) {
-            this.ganador = 2;
-        }
         return this.ganador;
     }
 
@@ -25,7 +20,11 @@ public class Partido {
         this.setGoles1(goles1);
         this.setGoles2(goles2);
         this.setEquipo2(equipo2);
-
+        if (getGoles1() > getGoles2()) {
+            this.ganador = 1;
+        } else if (getGoles2() > getGoles1()) {
+            this.ganador = 2;
+        } else this.ganador = 0;
     }
 
     public Equipo getEquipo1() {

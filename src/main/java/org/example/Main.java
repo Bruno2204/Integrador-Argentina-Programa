@@ -20,10 +20,6 @@ public class Main {
     public static void main(String[] args) {
 
         try {
-
-            //List<String> fileResultados = brResultados.lines().toList();
-            //List<String> filePronosticos = brPronosticos.lines().toList();
-
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/aquiles","root","password");
             Statement stmt = con.createStatement();
 
@@ -36,7 +32,7 @@ public class Main {
             con.close();
             Scanner scanner = new Scanner(System.in);
             System.out.println("¿Cuántos puntos desea por acierto?");
-            puntosXAcierto = scanner.nextInt();
+            //puntosXAcierto = scanner.nextInt();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -83,16 +79,15 @@ public class Main {
                 Partido partido = new Partido(fase,ronda,equipo1,goles1,goles2,equipo2);
                 lista.put(file.getString(3)+file.getString(6),partido);
 
-                if (!rondas.containsKey(file.getString(2))){
-
-                    rondas.put(file.getString(2),1);
+                if (!rondas.containsKey(Integer.toString(ronda))){
+                    rondas.put(Integer.toString(ronda),1);
                     if (!fases.containsKey(file.getString(1))){
-                        fases.put(file.getString(1),1);
+                        fases.put(Integer.toString(fase),1);
                         }else {
-                        fases.put(file.getString(1),fases.get(file.getString(1))+1);
+                        fases.put(Integer.toString(fase),fases.get(Integer.toString(fase))+1);
                         }
                 }else {
-                    rondas.put(file.getString(2),rondas.get(file.getString(2))+1);
+                    rondas.put(Integer.toString(ronda),rondas.get(Integer.toString(ronda))+1);
                     }
             }
         } catch (Exception e){
@@ -125,8 +120,8 @@ public class Main {
                     ganador = 2;
                 }
                 Partido partido = resultados.get(file.getString(2)+file.getString(6));
-                Participante.GetParticipante(file.getString(1)).pronosticos
-                        .add(new Pronostico(ganador,partido));
+                Participante.GetParticipante(file.getString(1))
+                        .pronosticos.add(new Pronostico(ganador,partido));
             }
         } catch (Exception e){
             e.printStackTrace();
@@ -134,7 +129,7 @@ public class Main {
     }
 
     public static void MostrarPuntajes() {
-        Participante.participantes.forEach((key,participante)->{
+        Participante.participantes.values().forEach((participante)->{
             participante.ObtenerPuntaje();
             System.out.println(participante.getNombre() +" Puntaje: " + participante.puntaje);
             System.out.println(participante.getNombre() +" Aciertos: " + participante.aciertos);
