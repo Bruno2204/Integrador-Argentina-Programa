@@ -1,9 +1,16 @@
 Fase,Ronda,Equipo 1,Cant. goles 1,Cant. goles 2,Equipo 2
-1,1,Argentina,2,0,Arabia Saudita
-1,1,Polonia,2,0,Mexico
-1,2,Argentina,2,0,Mexico
-1,2,Arabia Saudita,2,0,Polonia
-2,3,Argentina,2,0,Francia
-2,3,Peru,2,0,Marruecos
-2,4,China,2,0,Japon
-2,4,Usa,2,0,Belgica
+1,1,Argentina,1,2,Arabia Saudita
+1,1,Mexico,0,0,Polonia
+1,1,Polonia,2,0,Arabia Saudita
+1,1,Argentina,2,0,Mexico
+1,1,Polonia,0,2,Argentina
+1,1,Arabia Saudita,1,2,Mexico
+1,2,Dinamarca,0,0,Tunez
+1,2,Francia,4,1,Australia
+1,2,Tunez,0,1,Australia
+1,2,Francia,2,1,Dinamarca
+1,2,Australia,1,0,Dinamarca
+1,2,Tunez,1,0,Francia
+2,3,Argentina,2,1,Australia
+2,3,Francia,3,1,Polonia
+2,4,Argentina,4,2,Francia

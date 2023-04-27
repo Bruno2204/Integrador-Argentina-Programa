@@ -1,17 +1,31 @@
 Participante,Equipo 1,Gana 1,Empata,Gana 2,Equipo 2
 Mariana,Argentina,x,,,Arabia Saudita
-Mariana,Polonia,x,,,Mexico
+Mariana,Mexico,x,,,Polonia
+Mariana,Polonia,x,,,Arabia Saudita
 Mariana,Argentina,x,,,Mexico
-Mariana,Arabia Saudita,x,,,Polonia
-Mariana,Argentina,,,x,Francia
-Mariana,Peru,,,x,Marruecos
-Mariana,China,,x,,Japon
-Mariana,Usa,,,x,Belgica
+Mariana,Polonia,x,,,Argentina
+Mariana,Arabia Saudita,x,,,Mexico
+Mariana,Dinamarca,x,,,Tunez
+Mariana,Francia,x,,,Australia
+Mariana,Tunez,x,,,Australia
+Mariana,Francia,x,,,Dinamarca
+Mariana,Australia,x,,,Dinamarca
+Mariana,Tunez,x,,,Francia
+Mariana,Argentina,x,,,Australia
+Mariana,Francia,x,,,Polonia
+Mariana,Argentina,x,,,Francia
 Pedro,Argentina,,x,,Arabia Saudita
-Pedro,Polonia,x,,,Mexico
+Pedro,Mexico,x,,,Polonia
+Pedro,Polonia,x,,,Arabia Saudita
 Pedro,Argentina,x,,,Mexico
-Pedro,Arabia Saudita,x,,,Polonia
-Pedro,Argentina,x,,,Francia
-Pedro,Peru,x,,,Marruecos
-Pedro,China,x,,,Japon
-Pedro,Usa,,x,,Belgica
+Pedro,Polonia,x,,,Argentina
+Pedro,Arabia Saudita,x,,,Mexico
+Pedro,Dinamarca,x,,,Tunez
+Pedro,Francia,x,,,Australia
+Pedro,Tunez,x,,,Australia
+Pedro,Francia,x,,,Dinamarca
+Pedro,Australia,x,,,Dinamarca
+Pedro,Tunez,x,,,Francia
+Pedro,Argentina,x,,,Australia
+Pedro,Francia,x,,,Polonia
+Pedro,Argentina,,x,,Francia
