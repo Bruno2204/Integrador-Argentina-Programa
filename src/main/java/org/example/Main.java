@@ -28,7 +28,7 @@ public class Main {
             con.close();
             Scanner scanner = new Scanner(System.in);
             System.out.println("¿Cuántos puntos desea por acierto?");
-            puntosXAcierto = scanner.nextInt();
+            puntosPorAcierto = scanner.nextInt();
 
         } catch (Exception e) {
             e.printStackTrace();

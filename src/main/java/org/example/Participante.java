@@ -62,7 +62,7 @@ public class Participante {
                 }
             }
         }
-        setPuntaje(getAciertos() * Main.puntosPorAcierto + rondasAcertadas * 100 + fasesAcertadas * 1000);
+        setPuntaje(aciertos * Main.puntosPorAcierto + rondasAcertadas * 100 + fasesAcertadas * 1000);
     }
 
     public List<Pronostico> getPronosticos() {
